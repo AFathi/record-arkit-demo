@@ -176,7 +176,7 @@ class ViewController: UIViewController, ARSKViewDelegate {
     }
     
     @objc func gifAction(sender:UIButton) {
-        if recorder?.status == .recording {
+        if recorder?.status == .readyToRecord {
             self.gifButton.isEnabled = false
             self.gifButton.alpha = 0.3
             self.recorderButton.isEnabled = false
