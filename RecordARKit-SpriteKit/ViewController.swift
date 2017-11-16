@@ -23,7 +23,7 @@ class ViewController: UIViewController, ARSKViewDelegate {
         btn.setTitle("Record", for: .normal)
         btn.setTitleColor(.black, for: .normal)
         btn.backgroundColor = .white
-        btn.frame = CGRect(x: 0, y: 0, width: 150, height: 60)
+        btn.frame = CGRect(x: 0, y: 0, width: 110, height: 60)
         btn.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height*0.90)
         btn.layer.cornerRadius = btn.bounds.height/2
         btn.tag = 0
@@ -79,6 +79,9 @@ class ViewController: UIViewController, ARSKViewDelegate {
         // Initialize RecordAR
         recorder = RecordAR(ARSpriteKit: sceneView)
         
+        // Specifiy supported orientations
+        recorder?.inputViewOrientations = [.portrait, .landscapeLeft, .landscapeRight]
+
         // Add buttons to the UIViewController
         self.view.addSubview(recorderButton)
         self.view.addSubview(pauseButton)
