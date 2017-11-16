@@ -176,18 +176,20 @@ class ViewController: UIViewController, ARSKViewDelegate {
     }
     
     @objc func gifAction(sender:UIButton) {
-        self.gifButton.isEnabled = false
-        self.gifButton.alpha = 0.3
-        self.recorderButton.isEnabled = false
-        self.recorderButton.alpha = 0.3
-
-        recorder?.gif(forDuration: 1.5, export: true) { _, _, _ , exported in
-            if exported {
-                DispatchQueue.main.sync {
-                    self.gifButton.isEnabled = true
-                    self.gifButton.alpha = 1.0
-                    self.recorderButton.isEnabled = true
-                    self.recorderButton.alpha = 1.0
+        if recorder?.status == .recording {
+            self.gifButton.isEnabled = false
+            self.gifButton.alpha = 0.3
+            self.recorderButton.isEnabled = false
+            self.recorderButton.alpha = 0.3
+            
+            recorder?.gif(forDuration: 1.5, export: true) { _, _, _ , exported in
+                if exported {
+                    DispatchQueue.main.sync {
+                        self.gifButton.isEnabled = true
+                        self.gifButton.alpha = 1.0
+                        self.recorderButton.isEnabled = true
+                        self.recorderButton.alpha = 1.0
+                    }
                 }
             }
         }
